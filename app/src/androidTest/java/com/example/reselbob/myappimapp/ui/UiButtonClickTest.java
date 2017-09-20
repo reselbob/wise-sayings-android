@@ -1,6 +1,7 @@
-package com.example.reselbob.myappimapp;
+package com.example.reselbob.myappimapp.ui;
 
-
+import  com.example.reselbob.myappimapp.MainActivity;
+import  com.example.reselbob.myappimapp.R;
 import android.support.test.espresso.ViewInteraction;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
@@ -8,6 +9,8 @@ import android.test.suitebuilder.annotation.LargeTest;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
+
+import android.os.SystemClock;
 
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
@@ -27,13 +30,14 @@ import static org.hamcrest.Matchers.allOf;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class SimpleResponseTest {
+public class UiButtonClickTest {
 
     @Rule
     public ActivityTestRule<MainActivity> mActivityTestRule = new ActivityTestRule<>(MainActivity.class);
 
     @Test
-    public void simpleResponseTest() {
+    public void uiButtonClickTest() {
+        SystemClock.sleep(1500);
         ViewInteraction appCompatButton = onView(
                 allOf(withId(R.id.button), withText("Get Saying"), isDisplayed()));
         appCompatButton.perform(click());
@@ -47,6 +51,48 @@ public class SimpleResponseTest {
                                 0),
                         isDisplayed()));
         textView.check(matches(withText("Be Kind To Strangers")));
+
+        ViewInteraction appCompatButton2 = onView(
+                allOf(withId(R.id.button), withText("Get Saying"), isDisplayed()));
+        appCompatButton2.perform(click());
+
+        ViewInteraction textView2 = onView(
+                allOf(withId(R.id.textView), withText("Always Be Honest"),
+                        childAtPosition(
+                                childAtPosition(
+                                        IsInstanceOf.<View>instanceOf(android.view.ViewGroup.class),
+                                        1),
+                                0),
+                        isDisplayed()));
+        textView2.check(matches(withText("Always Be Honest")));
+
+        ViewInteraction appCompatButton3 = onView(
+                allOf(withId(R.id.button), withText("Get Saying"), isDisplayed()));
+        appCompatButton3.perform(click());
+
+        ViewInteraction textView3 = onView(
+                allOf(withId(R.id.textView), withText("The Truth is the Best"),
+                        childAtPosition(
+                                childAtPosition(
+                                        IsInstanceOf.<View>instanceOf(android.view.ViewGroup.class),
+                                        1),
+                                0),
+                        isDisplayed()));
+        textView3.check(matches(withText("The Truth is the Best")));
+
+        ViewInteraction appCompatButton4 = onView(
+                allOf(withId(R.id.button), withText("Get Saying"), isDisplayed()));
+        appCompatButton4.perform(click());
+
+        ViewInteraction textView4 = onView(
+                allOf(withId(R.id.textView), withText("Tip Well Always"),
+                        childAtPosition(
+                                childAtPosition(
+                                        IsInstanceOf.<View>instanceOf(android.view.ViewGroup.class),
+                                        1),
+                                0),
+                        isDisplayed()));
+        textView4.check(matches(withText("Tip Well Always")));
 
     }
 
